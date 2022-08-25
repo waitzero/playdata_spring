@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- 의존객체 자동주입 할떄 꼭 써야할것.    -->
+	<!-- context 모듈의 anotation-config 설정을 추가하여 자동주입 명령을 사용할 수 있게 함  -->
+	<context:annotation-config/>
+	
+	<!--1번 -->
+	<bean id = "doc1" class = "ex05.Document"/>
+	<bean id = "doc2" class = "ex05.Document"/>
+	<bean id = "printer" class = "ex05.Printer"/>
+	
+	<bean id = "computer" class = "ex06.quiz.Computer"/>
+	<bean id = "keyboard" class = "ex06.quiz.Keyboard"/>
+	<bean id = "monitor" class = "ex06.quiz.Monitor"/>
+	<bean id = "mouse" class = "ex06.quiz.Mouse"/>
+	
+	<bean id = "controller" class = "ex07.quiz.MemberController"/>
+	<bean id = "dao" class = "ex07.quiz.MemberDAO"/>
+	<bean id = "simp" class = "ex07.quiz.MemberServiceImpl"/>
+	
+	
+	
+</beans>

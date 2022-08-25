@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- name 속성이 멤버변수(set 이름) -->
+	<bean id = "cus" class="ex08.Customer">
+		<property name="lists">
+			<list>
+				<value>정정1</value>
+				<value>정정2</value>
+				<value>정정3</value>
+			</list>
+		</property>	
+		
+		<property name = "maps">
+			<map>
+				<entry key="1" value="정정1"></entry>
+				<entry key="2" value="정정2"></entry>
+				<entry key="3" value-ref="mmm"></entry>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="mmm" class="ex06.quiz.Mouse"/>
+
+</beans>
