@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- namespace는 구현인터페이스의 풀경로가 들어갑니다 -->
+<mapper namespace="com.simple.mapper.TestMapper">
+	
+	
+	<!-- id는 추상메서드명, resultType은 결과를 받아서 처리할 객체(반환유형) -->
+	<!-- sql의 ;은 찍지 않습니다 -->
+	<select id="getTime" resultType="string">
+		select now()
+	</select>
+	
+	
+	<!-- vo가 전달될 때는 vo안에 getter메서드명을 #{}에 사용합니다 -->
+	<insert id="insertTest">
+		insert into score(name, kor, eng, math) 
+		values( #{name}, #{kor}, #{eng}, #{math} )
+	</insert>
+	
+	<update id="updateTest">
+		update score set name = #{name},
+						 kor = #{kor},
+						 eng = #{eng},
+						 math = #{math}
+      	where sno = #{sno}						 
+	</update>
+	
+	<!-- 엘리어스 설정시 이름을 줄여서 사용할 수 있음. -->
+	<select id="selectTest" resultType="ScoreVO">
+		select * from score where sno = #{num}
+	</select>
+	
+	<select id="selectTest02" resultType="map">
+		select * from score where sno = #{num}
+	</select>
+	
+	<delete id="deleteTest">
+		delete from score where sno = #{num}
+	</delete>
+	
+	
+	
+
+</mapper>  
+  
+  
