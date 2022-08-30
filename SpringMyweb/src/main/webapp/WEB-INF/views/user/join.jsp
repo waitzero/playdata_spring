@@ -8,9 +8,9 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link rel="stylesheet" href="css/common.css">
-<script src="js/jquery-1.11.3.min.js"></script>
-<script src="js/common.js"></script>  
-<script src="js/jquery.smooth-scroll.min.js"></script> 
+<script src="${pageContext.request.contextPath}/resources/js/jquery-1.11.3.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/common.js"></script>  
+<script src="${pageContext.request.contextPath}/resources/js/jquery.smooth-scroll.min.js"></script> 
 
 </head>
 

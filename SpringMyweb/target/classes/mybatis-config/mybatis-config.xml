@@ -6,5 +6,6 @@
 <!-- VO클래스의 단축명을 선언 -->
 <configuration>
 	<typeAliases>
+	<typeAlias type="com.coding404.command.TripVO" alias="TripVO"/>
 	</typeAliases>
 </configuration>

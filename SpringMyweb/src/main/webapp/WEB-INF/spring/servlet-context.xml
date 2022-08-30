@@ -36,6 +36,7 @@
 		<beans:property name="order" value="2" /> <!--2번째 뷰 리졸버 형태로 사용  -->
 	</beans:bean>
 	
+	<!--컴포넌트 경로  -->
 	<context:component-scan base-package="com.coding404.*" />
 	
 	
