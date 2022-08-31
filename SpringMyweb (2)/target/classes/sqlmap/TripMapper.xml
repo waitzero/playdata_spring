@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+  <mapper namespace="com.coding404.trip.service.TripMapper">
+  
+  	<insert id="noticeRegist">
+  		insert into trip(tripdate, writer, title, content)
+  		values(#{tripdate}, #{writer}, #{title}, #{content} )
+  		
+  	</insert>
+  	<!-- 
+  	<select id="getList" resultType="TripVO">
+  		select * from trip
+  		order by tno desc
+  		limit #{pageStart}, #{amount}
+  	</select>
+  	 -->
+  	 
+  	 <!-- 동적쿼리에 test속성에는 vo의 getter명 or map key가 들어갑니다 -->
+  	<select id="getList" resultType="TripVO">
+  		select * from trip
+  		<if test="searchType == 'title' ">where title like concat('%', #{searchKey} ,'%')</if>
+  		<if test="searchType == 'writer' ">where writer like concat('%', #{searchKey} ,'%')</if>
+  		<if test="searchType == 'content' ">where content like concat('%', #{searchKey} ,'%')</if>
+  		<if test="searchType == 'titcont' ">where title like concat('%', #{searchKey} ,'%') and content like concat('%', #{searchKey} ,'%')</if>
+  		<if test="searchType == 'titcontwri' ">where title like concat('%', #{searchKey} ,'%') and content like concat('%', #{searchKey} ,'%') and writer like concat('%', #{searchKey} ,'%')</if>
+  		<if test="searchType == null or searchType == '' ">where 1 = 1</if>
+  		
+  		order by tno desc
+  		limit #{pageStart}, #{amount}
+  	</select>
+  	
+  	
+  	<select id="getTotal" resultType="int">
+  		select count(*) as total from trip
+  		<if test="searchType == 'title' ">where title like concat('%', #{searchKey} ,'%')</if>
+  		<if test="searchType == 'writer' ">where writer like concat('%', #{searchKey} ,'%')</if>
+  		<if test="searchType == 'content' ">where content like concat('%', #{searchKey} ,'%')</if>
+  		<if test="searchType == 'titcont' ">where title like concat('%', #{searchKey} ,'%') and content like concat('%', #{searchKey} ,'%')</if>
+  		<if test="searchType == 'titcontwri' ">where title like concat('%', #{searchKey} ,'%') and content like concat('%', #{searchKey} ,'%') and writer like concat('%', #{searchKey} ,'%')</if>
+  		<if test="searchType == null or searchType == '' ">where 1 = 1</if>
+  		
+  		
+  	</select>
+  	
+  	
+  	<select id="getDetail" resultType="TripVO">
+  		select * from trip where tno = #{tno}
+  	</select>
+  
+  	<update id="upHit">
+  		update trip set hit = hit + 1
+  		where tno = #{tno}
+  	</update>
+  	
+  	<update id="noticeUpdate">
+  		update trip set tripdate = #{tripdate},
+  						title = #{title},
+  						content = #{content}
+  		where tno = #{tno}
+  		
+  	</update>
+  	
+  	<delete id="noticeDelete">
+  		delete from trip where tno = #{tno}
+  	</delete>
+  	
+  	<!-- 이전글 다음글 -->
+  	<!-- CDATA는 sql에서 대소비교를 사용할때 순수한 문자의 형태로 인식시킴 -->
+  	<select id="getPrevNext" resultType="TripVO">
+  	<![CDATA[
+  	select * 
+	from trip 
+	where tno in ((select tno from trip where tno > #{tno} limit 1),
+				  (select tno from trip where tno < #{tno} order by tno desc limit 1)
+				 ) 
+	order by tno desc
+  	]]>
+  	</select>
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  
+  </mapper>
+  

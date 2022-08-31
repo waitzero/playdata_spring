@@ -1,0 +1,38 @@
+create table score(
+	sno int primary key auto_increment,
+    name varchar(30) not null,
+    kor varchar(10),
+    eng varchar(10),
+    math varchar(10)
+
+);
+
+
+create table board(
+	sno int primary key auto_increment,
+    name varchar(30) not null,
+    title varchar(10),
+    content varchar(10)
+
+);
+
+create table trip(
+	tno int primary key auto_increment,
+    tripdate varchar(50),
+    writer varchar(50) not null,
+    title varchar(50) not null,
+    content varchar(1000) not null,
+    hit int default 0,
+	regdate timestamp default current_timestamp
+    
+
+);
+select * from trip order by tno desc limit 0, 10; # 1~10
+select * from trip order by tno desc limit 0, 20; # 1~20
+select * from trip order by tno desc limit 10, 10; # 11~20
+select * from trip order by tno desc limit 10, 20; # 11~30
+
+
+select count(*) as total from trip;
+
+select *from trip where title like '%1%';
